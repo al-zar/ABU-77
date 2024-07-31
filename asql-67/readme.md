@@ -39,6 +39,41 @@ _написать и выполнить первый SQL-запрос_
 ### Задание 3.
 Перечислите все таблицы учебной базы данных dvd-rental и столбцы, которые имеют ограничения первичных ключей для этих таблиц. Запишите решение в формате таблицы: letsdocode.ru...in/1-3.png
 
+```sql
+SELECT
+	  tc.table_name AS "Название таблицы"
+	, tc.constraint_name AS "Поле таблицы"
+FROM
+	information_schema.table_constraints tc
+WHERE
+	tc.constraint_type = 'PRIMARY KEY'
+;
+```
+
+Вывод результата запроса:
+
+|Название таблицы|Поле таблицы|
+|----------------|------------|
+|actor|actor_pkey|
+|address|address_pkey|
+|category|category_pkey|
+|city|city_pkey|
+|country|country_pkey|
+|customer|customer_pkey|
+|film_actor|film_actor_pkey|
+|film_category|film_category_pkey|
+|film|film_pkey|
+|inventory|inventory_pkey|
+|language|language_pkey|
+|payment|payment_pkey|
+|rental|rental_pkey|
+|staff|staff_pkey|
+|store|store_pkey|
+
+
+
+<!--
+
 |No.|Название таблицы|Поле таблицы, которое является первичным ключом|
 |---|---|---|
 |1|payment|payment_id|
@@ -57,6 +92,7 @@ _написать и выполнить первый SQL-запрос_
 |14|category|category_id|
 |15|film_category|film_id, category_id|
 
+-->
 
 ### Задание 4.
 Выполните SQL-запрос к учебной базе данных dvd-rental “SELECT * FROM country;”. Сделайте скриншот результата.
@@ -66,7 +102,7 @@ _написать и выполнить первый SQL-запрос_
 
 Выполнение запроса:
 
-```
+```sql
 SELECT * 
 FROM country
 ;
@@ -212,7 +248,7 @@ FROM country
 ### Задание 2.
 С помощью SQL-запроса выведите в результат таблицу, содержащую названия таблиц и названия ограничений первичных ключей в этих таблицах. Для написания запроса используйте представление information_schema.table_constraints.
 
-```
+```sql
 SELECT 
 	  tc.table_name AS "Table Name" 
 	, kc.column_name AS "Column Name"
@@ -229,6 +265,7 @@ WHERE
 	tc.constraint_type = 'PRIMARY KEY'
 ORDER BY 
 	tc.table_name
+;
 ```
 
 ![](./scrs/sql_request_2.png)

@@ -70,7 +70,7 @@ WHERE
 |staff|staff_pkey|
 |store|store_pkey|
 
-
+![](./scrs/sql_request_0.png)
 
 <!--
 

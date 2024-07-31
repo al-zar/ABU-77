@@ -212,6 +212,88 @@ FROM country
 ### Задание 2.
 С помощью SQL-запроса выведите в результат таблицу, содержащую названия таблиц и названия ограничений первичных ключей в этих таблицах. Для написания запроса используйте представление information_schema.table_constraints.
 
+```
+SELECT 
+	  tc.table_name AS "Table Name" 
+	, kc.column_name AS "Column Name"
+	, tc.constraint_name AS "Constraint Name" 
+	, tc.constraint_type AS "Constraint Type"
+	, c.data_type AS "Data Type"
+FROM 
+	information_schema.table_constraints tc
+  INNER JOIN information_schema.key_column_usage kc 
+    ON kc.table_name = tc.table_name and kc.table_schema = tc.table_schema and kc.constraint_name = tc.constraint_name
+      JOIN information_schema.columns c 
+	ON c.column_name = kc.column_name and c.table_schema = kc.table_schema 
+WHERE 
+	tc.constraint_type = 'PRIMARY KEY'
+ORDER BY 
+	tc.table_name
+```
+
+![](./scrs/sql_request_2.png)
+
+
+<details>
+  <summary>
+
+  Вывод результата запроса
+
+  </summary>
+
+|Table Name|Column Name|Constraint Name|Constraint Type|Data Type|
+|----------|-----------|---------------|---------------|---------|
+|actor|actor_id|actor_pkey|PRIMARY KEY|smallint|
+|actor|actor_id|actor_pkey|PRIMARY KEY|integer|
+|actor|actor_id|actor_pkey|PRIMARY KEY|integer|
+|address|address_id|address_pkey|PRIMARY KEY|smallint|
+|address|address_id|address_pkey|PRIMARY KEY|smallint|
+|address|address_id|address_pkey|PRIMARY KEY|smallint|
+|address|address_id|address_pkey|PRIMARY KEY|integer|
+|category|category_id|category_pkey|PRIMARY KEY|integer|
+|category|category_id|category_pkey|PRIMARY KEY|smallint|
+|city|city_id|city_pkey|PRIMARY KEY|smallint|
+|city|city_id|city_pkey|PRIMARY KEY|integer|
+|country|country_id|country_pkey|PRIMARY KEY|smallint|
+|country|country_id|country_pkey|PRIMARY KEY|integer|
+|customer|customer_id|customer_pkey|PRIMARY KEY|integer|
+|customer|customer_id|customer_pkey|PRIMARY KEY|smallint|
+|customer|customer_id|customer_pkey|PRIMARY KEY|smallint|
+|film|film_id|film_pkey|PRIMARY KEY|integer|
+|film|film_id|film_pkey|PRIMARY KEY|smallint|
+|film|film_id|film_pkey|PRIMARY KEY|smallint|
+|film|film_id|film_pkey|PRIMARY KEY|smallint|
+|film_actor|film_id|film_actor_pkey|PRIMARY KEY|smallint|
+|film_actor|film_id|film_actor_pkey|PRIMARY KEY|smallint|
+|film_actor|film_id|film_actor_pkey|PRIMARY KEY|smallint|
+|film_actor|actor_id|film_actor_pkey|PRIMARY KEY|integer|
+|film_actor|actor_id|film_actor_pkey|PRIMARY KEY|smallint|
+|film_actor|actor_id|film_actor_pkey|PRIMARY KEY|integer|
+|film_actor|film_id|film_actor_pkey|PRIMARY KEY|integer|
+|film_category|category_id|film_category_pkey|PRIMARY KEY|smallint|
+|film_category|film_id|film_category_pkey|PRIMARY KEY|integer|
+|film_category|film_id|film_category_pkey|PRIMARY KEY|smallint|
+|film_category|film_id|film_category_pkey|PRIMARY KEY|smallint|
+|film_category|film_id|film_category_pkey|PRIMARY KEY|smallint|
+|film_category|category_id|film_category_pkey|PRIMARY KEY|integer|
+|inventory|inventory_id|inventory_pkey|PRIMARY KEY|integer|
+|inventory|inventory_id|inventory_pkey|PRIMARY KEY|integer|
+|language|language_id|language_pkey|PRIMARY KEY|smallint|
+|language|language_id|language_pkey|PRIMARY KEY|integer|
+|payment|payment_id|payment_pkey|PRIMARY KEY|integer|
+|rental|rental_id|rental_pkey|PRIMARY KEY|integer|
+|rental|rental_id|rental_pkey|PRIMARY KEY|integer|
+|staff|staff_id|staff_pkey|PRIMARY KEY|smallint|
+|staff|staff_id|staff_pkey|PRIMARY KEY|smallint|
+|staff|staff_id|staff_pkey|PRIMARY KEY|integer|
+|store|store_id|store_pkey|PRIMARY KEY|smallint|
+|store|store_id|store_pkey|PRIMARY KEY|smallint|
+|store|store_id|store_pkey|PRIMARY KEY|smallint|
+|store|store_id|store_pkey|PRIMARY KEY|integer|
+
+</details>
+
+
 Результат домашнего задания
 В качестве ответов на основную часть необходимо прикрепить скриншот на каждый пункт задания.
 В качестве ответов на дополнительную часть необходимо прислать скриншоты по заданию 1 и sql-файл с запросом по заданию 2.
